@@ -262,11 +262,12 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
         CALayer* layer = (CALayer*) [self.menuItems objectAtIndex:i];
         layer.transform = CATransform3DIdentity;
        
+        //mashx changed ;
         // Rotate menu items based on orientation
-        if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-            CGFloat angle = [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft ? M_PI_2 : -M_PI_2;
-            layer.transform = CATransform3DRotate(CATransform3DIdentity, angle, 0, 0, 1);
-        }
+//        if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+//            CGFloat angle = [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft ? M_PI_2 : -M_PI_2;
+//            layer.transform = CATransform3DRotate(CATransform3DIdentity, angle, 0, 0, 1);
+//        }
     }
 }
 
@@ -285,7 +286,11 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
 
 - (CGFloat) itemAngleAtIndex:(NSUInteger) index
 {
-    float bearingRadians = [self angleBeweenStartinPoint:self.longPressLocation endingPoint:self.center];
+    //mashx changed
+    //float bearingRadians = [self angleBeweenStartinPoint:self.longPressLocation endingPoint:self.center];
+    CGPoint mashxPoint = self.center ;
+    mashxPoint.y = mashxPoint.y + 50 ;
+    float bearingRadians = [self angleBeweenStartinPoint:mashxPoint endingPoint:self.center];
     
     CGFloat angle =  bearingRadians - self.arcAngle/2;
     
