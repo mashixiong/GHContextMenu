@@ -290,7 +290,7 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
     //float bearingRadians = [self angleBeweenStartinPoint:self.longPressLocation endingPoint:self.center];
     CGPoint mashxPoint = self.longPressLocation ;
     if (mashxPoint.y < self.center.y) {
-        mashxPoint.y = mashxPoint.y + 50 ;
+        mashxPoint.y = self.center.y + 50 ;
     }
     float bearingRadians = [self angleBeweenStartinPoint:mashxPoint endingPoint:self.center];
     
