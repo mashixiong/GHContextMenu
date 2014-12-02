@@ -288,6 +288,9 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
 {
     //mashx changed
     //float bearingRadians = [self angleBeweenStartinPoint:self.longPressLocation endingPoint:self.center];
+    if (self.menuItems.count==1) {
+        return M_PI / 2.0 ;
+    }
     CGPoint mashxPoint = self.longPressLocation ;
     if (mashxPoint.y < self.center.y) {
         mashxPoint.y = self.center.y + 50 ;
