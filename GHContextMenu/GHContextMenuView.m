@@ -13,7 +13,7 @@
 
 NSInteger const GHMainItemSize = 44;
 NSInteger const GHMenuItemSize = 40;
-NSInteger const GHBorderWidth  = 5;
+NSInteger const GHBorderWidth  = 2;
 
 CGFloat const   GHAnimationDuration = 0.2;
 CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
@@ -34,6 +34,7 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
 @interface GHContextMenuView ()<UIGestureRecognizerDelegate>
 {
     CADisplayLink *displayLink;
+    UIColor* _hightlightColor ;
 }
 
 @property (nonatomic, strong) UILongPressGestureRecognizer* longPressRecognizer;
@@ -54,6 +55,7 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
 
 @property (nonatomic) CGColorRef itemBGHighlightedColor;
 @property (nonatomic) CGColorRef itemBGColor;
+
 
 @end
 
@@ -82,9 +84,11 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
         _arcAngle = M_PI_2;
         _radius = 90;
         
-        self.itemBGColor = [UIColor grayColor].CGColor;
-        self.itemBGHighlightedColor = [UIColor redColor].CGColor;
+        self.itemBGColor = [UIColor blackColor].CGColor;
+        _hightlightColor = [UIColor colorWithRed:239./255. green:139./255. blue:1.0/255. alpha:1.0];
+        self.itemBGHighlightedColor = _hightlightColor.CGColor;
         
+        [self setTintColor:[UIColor whiteColor]] ;
     }
     return self;
 }
@@ -203,7 +207,7 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
     layer.cornerRadius = GHMenuItemSize/2;
     layer.borderColor = [UIColor whiteColor].CGColor;
     layer.borderWidth = GHBorderWidth;
-    layer.shadowColor = [UIColor blackColor].CGColor;
+//    layer.shadowColor = [UIColor blackColor].CGColor;
     layer.shadowOffset = CGSizeMake(0, -1);
     layer.backgroundColor = self.itemBGColor;
     
@@ -288,8 +292,8 @@ CGFloat const   GHAnimationDelay = GHAnimationDuration/5;
 {
     //mashx changed
     //float bearingRadians = [self angleBeweenStartinPoint:self.longPressLocation endingPoint:self.center];
-    if (self.menuItems.count==1) {
-        return - M_PI / 2.0 ;
+    if (_menuItems.count == 1) {
+        return -0.5 * M_PI ;
     }
     CGPoint mashxPoint = self.longPressLocation ;
     if (mashxPoint.y < self.center.y) {
